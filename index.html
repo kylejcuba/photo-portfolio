@@ -28,8 +28,38 @@
          alt="An Airplane from the Lancaster Air Show, September '24">
   </main>
 
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
   <footer>
     <p>© Kyle Cuba</p> 
   </footer>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const images = document.querySelectorAll(".gallery img");
+    const close = document.querySelector(".close");
+
+    images.forEach(image => {
+        image.addEventListener("click", () => {
+            lightbox.style.display = "flex";
+            lightboxImg.src = image.src;
+            lightboxImg.alt = image.alt;
+        });
+    });
+
+    close.addEventListener("click", () => {
+        lightbox.style.display = "none";
+    });
+
+    lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+            lightbox.style.display = "none";
+        }
+    });
+</script>
 </body>
 </html>
