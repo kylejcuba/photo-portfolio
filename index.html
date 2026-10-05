@@ -1,31 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kyle Cuba Photography</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>A Selection of my Best Shots</h1>
-  </header>
 
-  <main class="gallery">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <span class="logo">Kyle Cuba</span>
+
+    <div class="nav-links">
+        <a href="index.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+</nav>
+
+ <section class="hero">
+
+</section>
+
+<main class="gallery">
+
     <img src="images/IMG_0626.JPG"
          alt="An engine block from Cars and Coffee, July '24">
+
     <img src="images/IMG_0917.JPG"
          alt="A ladybug on top of Governor Dick tower, September '24">
+
     <img src="images/IMG_1435.JPG"
          alt="An airplane propellor from WWII weekend in Reading PA, June '26">
+
     <img src="images/IMG_1575.JPG"
          alt="Chest day at The Foundry, July '26">
+
     <img src="images/IMG_5523.JPG"
          alt="BMW M3 Engine Block from Cars and Coffee, July '24">
+
     <img src="images/IMG_5656.JPG"
          alt="An Audi S3 Sedan from Cars and Coffee, May '24">
+
     <img src="images/IMG_6268.JPG"
          alt="An Airplane from the Lancaster Air Show, September '24">
+
   </main>
 
   <div id="lightbox" class="lightbox">
@@ -43,22 +70,146 @@
     const images = document.querySelectorAll(".gallery img");
     const close = document.querySelector(".close");
 
-    images.forEach(image => {
+    let currentIndex = 0;
+    let startX = 0;
+    let endX = 0;
+
+
+    // OPEN PHOTO
+    images.forEach((image, index) => {
+
         image.addEventListener("click", () => {
-            lightbox.style.display = "flex";
+
+            currentIndex = index;
+
             lightboxImg.src = image.src;
             lightboxImg.alt = image.alt;
+
+            lightbox.style.display = "flex";
         });
+
     });
 
+
+    // NEXT PHOTO
+    function nextImage() {
+
+        currentIndex++;
+
+        if (currentIndex >= images.length) {
+            currentIndex = 0;
+        }
+
+        lightboxImg.src = images[currentIndex].src;
+        lightboxImg.alt = images[currentIndex].alt;
+    }
+
+
+    // PREVIOUS PHOTO
+    function previousImage() {
+
+        currentIndex--;
+
+        if (currentIndex < 0) {
+            currentIndex = images.length - 1;
+        }
+
+        lightboxImg.src = images[currentIndex].src;
+        lightboxImg.alt = images[currentIndex].alt;
+    }
+
+
+    // KEYBOARD CONTROLS
+    document.addEventListener("keydown", (event) => {
+
+        if (lightbox.style.display !== "flex") {
+            return;
+        }
+
+        if (event.key === "ArrowRight") {
+            nextImage();
+        }
+
+        if (event.key === "ArrowLeft") {
+            previousImage();
+        }
+
+        if (event.key === "Escape") {
+            lightbox.style.display = "none";
+        }
+
+    });
+
+
+    // CLICK + DRAG
+    lightboxImg.addEventListener("mousedown", (event) => {
+
+        startX = event.clientX;
+
+        lightboxImg.style.cursor = "grabbing";
+
+    });
+
+
+    lightboxImg.addEventListener("mouseup", (event) => {
+
+        endX = event.clientX;
+
+        lightboxImg.style.cursor = "grab";
+
+        handleSwipe();
+
+    });
+
+
+    // TOUCH / PHONE SWIPE
+    lightboxImg.addEventListener("touchstart", (event) => {
+
+        startX = event.touches[0].clientX;
+
+    });
+
+
+    lightboxImg.addEventListener("touchend", (event) => {
+
+        endX = event.changedTouches[0].clientX;
+
+        handleSwipe();
+
+    });
+
+
+    // DETERMINE SWIPE DIRECTION
+    function handleSwipe() {
+
+        const distance = startX - endX;
+
+        // Dragged left
+        if (distance > 50) {
+            nextImage();
+        }
+
+        // Dragged right
+        if (distance < -50) {
+            previousImage();
+        }
+
+    }
+
+
+    // CLOSE BUTTON
     close.addEventListener("click", () => {
         lightbox.style.display = "none";
     });
 
+
+    // CLICK BACKGROUND TO CLOSE
     lightbox.addEventListener("click", (event) => {
+
         if (event.target === lightbox) {
             lightbox.style.display = "none";
         }
+
     });
 </script>
 </body>

@@ -9,20 +9,102 @@ body {
   font-family: Arial, sans-serif;
 }
 
-header, footer {
-  padding: 48px 24px;
+header {
+  padding: 0 24px 10px;
   text-align: center;
 }
 
-h1 {
+/* ---------- HERO ---------- */
+
+.hero {
+    height: 81vh;
+}
+
+footer {
+  padding: 48px 24px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8px;
   font-weight: 400;
   letter-spacing: 2px;
+}
+/* ---------- NAVIGATION ---------- */
+
+.navbar {
+    max-width: 1400px;
+    height: 65px;
+    margin: 0 auto;
+    padding: 0 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #eee;
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    position: relative;
+    
+    color: #999;
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    padding-bottom: 6px;
+
+    transition: color 0.25s ease;
+}
+
+.nav-links a::after {
+
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 1px;
+
+    background: #fff;
+
+    transition: width 0.45s ease;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .gallery {
   max-width: 1400px;
   margin: auto;
-  padding: 24px;
+  padding: 15px 24px 24px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
@@ -56,6 +138,9 @@ h1 {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
+
+    cursor: grab;
+    user-select: none;
 }
 
 .close {
@@ -65,4 +150,55 @@ h1 {
     color: white;
     font-size: 40px;
     cursor: pointer;
+}
+
+
+
+
+/* ---------- CONTACT PAGE ---------- */
+
+.contact-page {
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding: 0 15%;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+
+    min-width: 180px;
+}
+
+.contact-links a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    color: #aaa;
+    text-decoration: none;
+
+    font-size: 20px;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.contact-links img {
+    width: 24px;
+    height: 24px;
+
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.contact-links a:hover {
+    color: #fff;
+    transform: translateX(4px);
 }
