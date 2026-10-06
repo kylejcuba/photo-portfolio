@@ -195,21 +195,82 @@ footer {
 /* ---------- CONTACT PAGE ---------- */
 
 .contact-page {
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 65px);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 7% 80px;
 
-    display: flex;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
     align-items: center;
-
-    padding: 0 15%;
+    gap: 90px;
 }
+
+
+/* ---------- CONTACT PHOTO ---------- */
+
+.contact-photo {
+    position: relative;
+    width: 100%;
+}
+
+.contact-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+
+    opacity: 0.88;
+}
+
+/* Fade photo into page background */
+
+.contact-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent 65%,
+            #111 100%
+        ),
+        linear-gradient(
+            to bottom,
+            transparent 75%,
+            #111 100%
+        );
+}
+
+
+/* ---------- CONTACT CONTENT ---------- */
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact-heading {
+    margin: 0 0 32px;
+
+    color: #777;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+
+    letter-spacing: 4px;
+}
+
+
+/* ---------- CONTACT LINKS ---------- */
 
 .contact-links {
     display: flex;
     flex-direction: column;
     gap: 26px;
-
-    min-width: 180px;
 }
 
 .contact-links a {
@@ -220,22 +281,59 @@ footer {
     color: #aaa;
     text-decoration: none;
 
-    font-size: 20px;
+    font-size: 18px;
 
     transition:
-        color 0.2s ease,
-        transform 0.2s ease;
+        color 0.25s ease,
+        transform 0.25s ease;
 }
 
-.contact-links img {
+.contact-links i {
     width: 24px;
-    height: 24px;
 
-    object-fit: contain;
-    flex-shrink: 0;
+    font-size: 21px;
+    text-align: center;
+
+    color: #777;
+
+    transition: color 0.25s ease;
 }
 
 .contact-links a:hover {
     color: #fff;
-    transform: translateX(4px);
+    transform: translateX(5px);
+}
+
+.contact-links a:hover i {
+    color: #fff;
+}
+
+
+/* ---------- CONTACT MOBILE ---------- */
+
+@media (max-width: 800px) {
+
+    .contact-page {
+        grid-template-columns: 1fr;
+        gap: 45px;
+
+        padding: 50px 24px 70px;
+    }
+
+    .contact-photo {
+        max-width: 650px;
+    }
+
+    .contact-photo::after {
+        background:
+            linear-gradient(
+                to bottom,
+                transparent 65%,
+                #111 100%
+            );
+    }
+
+    .contact-links a {
+        font-size: 16px;
+    }
 }
