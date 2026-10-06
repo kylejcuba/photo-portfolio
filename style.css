@@ -347,11 +347,11 @@ footer p:first-child {
 }
 
 .lightbox-prev {
-    left: 25px;
+    left: 15px;
 }
 
 .lightbox-next {
-    right: 25px;
+    right: 15px;
 }
 
 
