@@ -84,7 +84,7 @@ header {
 }
 
 footer {
-    padding: 20px 24px 40px;
+    padding: 48px 24px;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 8px;
@@ -93,7 +93,7 @@ footer {
 }
 
 footer p:first-child {
-    font-size: 12px;
+    font-size: 10px;
     margin-bottom: 20px;
 }
 
@@ -347,11 +347,11 @@ footer p:first-child {
 }
 
 .lightbox-prev {
-    left: 15px;
+    left: 25px;
 }
 
 .lightbox-next {
-    right: 15px;
+    right: 25px;
 }
 
 
@@ -480,8 +480,11 @@ body.lightbox-open {
     color: #aaa;
     text-decoration: none;
 
-    font-family: "Arial", Helvetica, sans-serif;
-    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 
     transition:
         color 0.25s ease,
