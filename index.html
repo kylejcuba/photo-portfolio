@@ -69,9 +69,26 @@
 
 </main>
 
-  <div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img id="lightbox-img" src="" alt="">
+ <div id="lightbox" class="lightbox">
+
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+
+    <button class="lightbox-arrow lightbox-prev" aria-label="Previous photo">
+        &#10094;
+    </button>
+
+    <div class="lightbox-image-container">
+        <img id="lightbox-img" src="" alt="" draggable="false">
+    </div>
+
+    <button class="lightbox-arrow lightbox-next" aria-label="Next photo">
+        &#10095;
+    </button>
+
+    <div class="lightbox-counter">
+        <span id="current-photo">1</span> / <span id="total-photos">24</span>
+    </div>
+
 </div>
 
   <footer>
@@ -79,34 +96,99 @@
     <p>© Kyle Cuba</p> 
   </footer>
 
-  <script>
+ <script>
+
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
+
     const images = document.querySelectorAll(".gallery img");
-    const close = document.querySelector(".close");
+
+    const closeButton = document.querySelector(".lightbox-close");
+    const nextButton = document.querySelector(".lightbox-next");
+    const previousButton = document.querySelector(".lightbox-prev");
+
+    const currentPhoto = document.getElementById("current-photo");
+    const totalPhotos = document.getElementById("total-photos");
 
     let currentIndex = 0;
+
     let startX = 0;
     let endX = 0;
 
+    totalPhotos.textContent = images.length;
 
-    // OPEN PHOTO
+
+
+    /* ---------- OPEN ---------- */
+
     images.forEach((image, index) => {
 
         image.addEventListener("click", () => {
 
             currentIndex = index;
 
-            lightboxImg.src = image.src;
-            lightboxImg.alt = image.alt;
+            updateImage(false);
 
-            lightbox.style.display = "flex";
+            lightbox.classList.add("open");
+
+            document.body.classList.add("lightbox-open");
+
         });
 
     });
 
 
-    // NEXT PHOTO
+
+    /* ---------- CLOSE ---------- */
+
+    function closeLightbox() {
+
+        lightbox.classList.remove("open");
+
+        document.body.classList.remove("lightbox-open");
+
+    }
+
+
+
+    /* ---------- UPDATE IMAGE ---------- */
+
+    function updateImage(animate = true) {
+
+        if (animate) {
+
+            lightboxImg.classList.add("changing");
+
+            setTimeout(() => {
+
+                lightboxImg.src = images[currentIndex].src;
+                lightboxImg.alt = images[currentIndex].alt;
+
+                currentPhoto.textContent = currentIndex + 1;
+
+                lightboxImg.classList.remove("changing");
+
+                preloadNeighbors();
+
+            }, 150);
+
+        } else {
+
+            lightboxImg.src = images[currentIndex].src;
+            lightboxImg.alt = images[currentIndex].alt;
+
+            currentPhoto.textContent = currentIndex + 1;
+
+            preloadNeighbors();
+
+        }
+
+    }
+
+
+
+    /* ---------- NEXT ---------- */
+
     function nextImage() {
 
         currentIndex++;
@@ -115,12 +197,14 @@
             currentIndex = 0;
         }
 
-        lightboxImg.src = images[currentIndex].src;
-        lightboxImg.alt = images[currentIndex].alt;
+        updateImage();
+
     }
 
 
-    // PREVIOUS PHOTO
+
+    /* ---------- PREVIOUS ---------- */
+
     function previousImage() {
 
         currentIndex--;
@@ -129,34 +213,87 @@
             currentIndex = images.length - 1;
         }
 
-        lightboxImg.src = images[currentIndex].src;
-        lightboxImg.alt = images[currentIndex].alt;
+        updateImage();
+
     }
 
 
-    // KEYBOARD CONTROLS
+
+    /* ---------- PRELOAD NEIGHBORING PHOTOS ---------- */
+
+    function preloadNeighbors() {
+
+        const nextIndex =
+            (currentIndex + 1) % images.length;
+
+        const previousIndex =
+            (currentIndex - 1 + images.length) % images.length;
+
+
+        const nextPhoto = new Image();
+        nextPhoto.src = images[nextIndex].src;
+
+
+        const previousPhoto = new Image();
+        previousPhoto.src = images[previousIndex].src;
+
+    }
+
+
+
+    /* ---------- BUTTONS ---------- */
+
+    nextButton.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+        nextImage();
+
+    });
+
+
+    previousButton.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+        previousImage();
+
+    });
+
+
+    closeButton.addEventListener("click", closeLightbox);
+
+
+
+    /* ---------- KEYBOARD ---------- */
+
     document.addEventListener("keydown", (event) => {
 
-        if (lightbox.style.display !== "flex") {
+        if (!lightbox.classList.contains("open")) {
             return;
         }
+
 
         if (event.key === "ArrowRight") {
             nextImage();
         }
 
+
         if (event.key === "ArrowLeft") {
             previousImage();
         }
 
+
         if (event.key === "Escape") {
-            lightbox.style.display = "none";
+            closeLightbox();
         }
 
     });
 
 
-    // CLICK + DRAG
+
+    /* ---------- MOUSE DRAG ---------- */
+
     lightboxImg.addEventListener("mousedown", (event) => {
 
         startX = event.clientX;
@@ -177,7 +314,9 @@
     });
 
 
-    // TOUCH / PHONE SWIPE
+
+    /* ---------- MOBILE SWIPE ---------- */
+
     lightboxImg.addEventListener("touchstart", (event) => {
 
         startX = event.touches[0].clientX;
@@ -194,38 +333,84 @@
     });
 
 
-    // DETERMINE SWIPE DIRECTION
+
+    /* ---------- SWIPE DIRECTION ---------- */
+
     function handleSwipe() {
 
         const distance = startX - endX;
 
-        // Dragged left
+
         if (distance > 50) {
+
             nextImage();
+
         }
 
-        // Dragged right
+
         if (distance < -50) {
+
             previousImage();
+
         }
 
     }
 
 
-    // CLOSE BUTTON
-    close.addEventListener("click", () => {
-        lightbox.style.display = "none";
-    });
+
+    /* ---------- MOUSE WHEEL ---------- */
+
+    let wheelLocked = false;
+
+    lightbox.addEventListener("wheel", (event) => {
+
+        event.preventDefault();
 
 
-    // CLICK BACKGROUND TO CLOSE
+        if (wheelLocked) {
+            return;
+        }
+
+
+        wheelLocked = true;
+
+
+        if (event.deltaY > 0) {
+
+            nextImage();
+
+        } else {
+
+            previousImage();
+
+        }
+
+
+        setTimeout(() => {
+
+            wheelLocked = false;
+
+        }, 500);
+
+    }, { passive: false });
+
+
+
+    /* ---------- CLICK BACKGROUND TO CLOSE ---------- */
+
     lightbox.addEventListener("click", (event) => {
 
-        if (event.target === lightbox) {
-            lightbox.style.display = "none";
+        if (
+            event.target === lightbox ||
+            event.target.classList.contains("lightbox-image-container")
+        ) {
+
+            closeLightbox();
+
         }
 
     });
+
 </script>
 <script>
 

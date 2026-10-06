@@ -226,38 +226,161 @@ footer p:first-child {
 
 }
 
+/* ---------- LIGHTBOX ---------- */
+
 .lightbox {
     display: none;
+
     position: fixed;
+    inset: 0;
     z-index: 1000;
-    left: 0;
-    top: 0;
+
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.96);
 
     justify-content: center;
     align-items: center;
+
+    overflow: hidden;
+}
+
+.lightbox.open {
+    display: flex;
+}
+
+
+/* ---------- IMAGE ---------- */
+
+.lightbox-image-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
 }
 
 .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 88%;
+    max-height: 88vh;
+
     object-fit: contain;
 
     cursor: grab;
     user-select: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
 }
 
-.close {
+.lightbox img.changing {
+    opacity: 0;
+    transform: scale(0.985);
+}
+
+.lightbox img:active {
+    cursor: grabbing;
+}
+
+
+/* ---------- CLOSE ---------- */
+
+.lightbox-close {
     position: absolute;
-    top: 20px;
-    right: 35px;
-    color: white;
-    font-size: 40px;
+
+    top: 22px;
+    right: 30px;
+
+    z-index: 1002;
+
+    background: none;
+    border: none;
+
+    color: #aaa;
+
+    font-size: 36px;
+    font-weight: 200;
+
     cursor: pointer;
+
+    transition: color 0.2s ease;
 }
 
+.lightbox-close:hover {
+    color: #fff;
+}
+
+
+/* ---------- ARROWS ---------- */
+
+.lightbox-arrow {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 1002;
+
+    background: none;
+    border: none;
+
+    color: #777;
+
+    font-size: 36px;
+
+    cursor: pointer;
+
+    padding: 30px;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.lightbox-arrow:hover {
+    color: #fff;
+}
+
+.lightbox-prev {
+    left: 15px;
+}
+
+.lightbox-next {
+    right: 15px;
+}
+
+
+/* ---------- PHOTO COUNTER ---------- */
+
+.lightbox-counter {
+    position: absolute;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #777;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    z-index: 1002;
+}
+
+
+/* ---------- PREVENT BACKGROUND SCROLL ---------- */
+
+body.lightbox-open {
+    overflow: hidden;
+}
 
 
 
