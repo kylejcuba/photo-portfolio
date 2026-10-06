@@ -237,10 +237,18 @@
         window.scrollTo(0, 0);
 
         setTimeout(() => {
-            document.getElementById("gallery").scrollIntoView({
+
+            const gallery = document.getElementById("gallery");
+
+            const galleryPosition =
+                gallery.getBoundingClientRect().top + window.scrollY;
+
+            window.scrollTo({
+                top: galleryPosition - 150,
                 behavior: "smooth"
             });
-        }, 700);
+
+        }, 1500);
     }
 </script>
 </body>
