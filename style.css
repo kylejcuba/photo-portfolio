@@ -194,18 +194,16 @@ footer {
 
 /* ---------- CONTACT PAGE ---------- */
 
-/* ---------- CONTACT PAGE ---------- */
-
 .contact-page {
     min-height: calc(100vh - 65px);
-    max-width: 1500px;
+    max-width: 1450px;
     margin: 0 auto;
-    padding: 40px 5% 80px;
+    padding: 40px 6% 80px;
 
     display: grid;
-    grid-template-columns: 1.55fr 0.85fr;
+    grid-template-columns: 1.45fr 0.95fr;
     align-items: center;
-    gap: 100px;
+    gap: 95px;
 }
 
 
@@ -213,7 +211,7 @@ footer {
 
 .contact-photo {
     position: relative;
-    width: 108%;
+    width: 104%;
 }
 
 .contact-photo img {
@@ -253,8 +251,7 @@ footer {
     flex-direction: column;
     align-items: flex-start;
 
-    /* moves the links slightly farther right */
-    transform: translateX(30px);
+    transform: translateX(15px);
 }
 
 .contact-heading {
@@ -267,7 +264,6 @@ footer {
     font-weight: 400;
 
     letter-spacing: 4px;
-    text-transform: uppercase;
 }
 
 
@@ -287,12 +283,7 @@ footer {
     color: #aaa;
     text-decoration: none;
 
-    /* matches your header/nav typography */
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-size: 18px;
 
     transition:
         color 0.25s ease,
@@ -317,33 +308,4 @@ footer {
 
 .contact-links a:hover i {
     color: #fff;
-}
-
-/* ---------- CONTACT MOBILE ---------- */
-
-@media (max-width: 800px) {
-
-    .contact-page {
-        grid-template-columns: 1fr;
-        gap: 45px;
-
-        padding: 50px 24px 70px;
-    }
-
-    .contact-photo {
-        max-width: 650px;
-    }
-
-    .contact-photo::after {
-        background:
-            linear-gradient(
-                to bottom,
-                transparent 65%,
-                #111 100%
-            );
-    }
-
-    .contact-links a {
-        font-size: 16px;
-    }
 }
