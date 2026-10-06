@@ -196,14 +196,14 @@ footer {
 
 .contact-page {
     min-height: calc(100vh - 65px);
-    max-width: 1450px;
+    max-width: 1500px;
     margin: 0 auto;
-    padding: 40px 6% 80px;
+    padding: 40px 5% 80px;
 
     display: grid;
-    grid-template-columns: 1.45fr 0.95fr;
+    grid-template-columns: 1.55fr 0.85fr;
     align-items: center;
-    gap: 95px;
+    gap: 100px;
 }
 
 
@@ -211,7 +211,7 @@ footer {
 
 .contact-photo {
     position: relative;
-    width: 104%;
+    width: 106%;
 }
 
 .contact-photo img {
@@ -221,8 +221,6 @@ footer {
 
     opacity: 0.88;
 }
-
-/* Fade photo into page background */
 
 .contact-photo::after {
     content: "";
@@ -251,7 +249,7 @@ footer {
     flex-direction: column;
     align-items: flex-start;
 
-    transform: translateX(15px);
+    transform: translateX(30px);
 }
 
 .contact-heading {
@@ -283,7 +281,12 @@ footer {
     color: #aaa;
     text-decoration: none;
 
-    font-size: 18px;
+    /* Same font styling as your header/navigation */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 
     transition:
         color 0.25s ease,
