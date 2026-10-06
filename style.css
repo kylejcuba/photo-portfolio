@@ -194,16 +194,18 @@ footer {
 
 /* ---------- CONTACT PAGE ---------- */
 
+/* ---------- CONTACT PAGE ---------- */
+
 .contact-page {
     min-height: calc(100vh - 65px);
-    max-width: 1400px;
+    max-width: 1500px;
     margin: 0 auto;
-    padding: 40px 7% 80px;
+    padding: 40px 5% 80px;
 
     display: grid;
-    grid-template-columns: 1.35fr 1fr;
+    grid-template-columns: 1.55fr 0.85fr;
     align-items: center;
-    gap: 90px;
+    gap: 100px;
 }
 
 
@@ -211,7 +213,7 @@ footer {
 
 .contact-photo {
     position: relative;
-    width: 100%;
+    width: 108%;
 }
 
 .contact-photo img {
@@ -250,6 +252,9 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    /* moves the links slightly farther right */
+    transform: translateX(30px);
 }
 
 .contact-heading {
@@ -262,6 +267,7 @@ footer {
     font-weight: 400;
 
     letter-spacing: 4px;
+    text-transform: uppercase;
 }
 
 
@@ -281,7 +287,12 @@ footer {
     color: #aaa;
     text-decoration: none;
 
-    font-size: 18px;
+    /* matches your header/nav typography */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 
     transition:
         color 0.25s ease,
@@ -307,7 +318,6 @@ footer {
 .contact-links a:hover i {
     color: #fff;
 }
-
 
 /* ---------- CONTACT MOBILE ---------- */
 
