@@ -6,7 +6,7 @@ body {
   margin: 0;
   background: #111;
   color: #eee;
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -327,7 +327,7 @@ footer p:first-child {
 
     color: #777;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Arial", Helvetica, sans-serif;
     font-size: 10px;
     font-weight: 400;
 
@@ -339,7 +339,7 @@ footer p:first-child {
 
 .contact-links {
 
-    font-family: "Arial", Helvetica, serif;
+    font-family: "Arial", Helvetica, sans-serif;
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.5px;
@@ -357,7 +357,7 @@ footer p:first-child {
     color: #aaa;
     text-decoration: none;
 
-    font-family: "Arial", Helvetica serif;
+    font-family: "Arial", Helvetica, sans-serif;
     font-size: 18px;
 
     transition:
