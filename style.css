@@ -75,7 +75,7 @@ header {
     margin-top: 14px;
 
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
 
     letter-spacing: 5px;
@@ -93,7 +93,7 @@ footer {
 }
 
 footer p:first-child {
-    font-size: 10px;
+    font-size: 9px;
     margin-bottom: 20px;
 }
 
@@ -509,4 +509,174 @@ body.lightbox-open {
 
 .contact-links a:hover i {
     color: #fff;
+}
+
+/* ---------- CONTACT MOBILE ---------- */
+
+@media (max-width: 800px) {
+
+    .contact-page {
+        min-height: auto;
+        grid-template-columns: 1fr;
+
+        padding: 25px 22px 60px;
+        gap: 35px;
+
+        transform: none;
+    }
+
+    .contact-photo {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .contact-photo img {
+        width: 100%;
+        height: auto;
+    }
+
+    .contact-photo::after {
+        background:
+            linear-gradient(
+                to bottom,
+                transparent 70%,
+                #111 100%
+            );
+    }
+
+    .contact-content {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-heading {
+        margin-bottom: 28px;
+    }
+
+    .contact-links {
+        width: 100%;
+        align-items: center;
+        gap: 22px;
+    }
+
+    .contact-links a {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        gap: 12px;
+    }
+
+    .contact-links i {
+        font-size: 18px;
+        width: 20px;
+    }
+}
+
+/* ---------- LIGHTBOX MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+    .lightbox img {
+        max-width: 94%;
+        max-height: 78vh;
+    }
+
+    .lightbox-arrow {
+        top: auto;
+        bottom: 18px;
+
+        transform: none;
+
+        font-size: 28px;
+        padding: 15px 25px;
+    }
+
+    .lightbox-prev {
+        left: 20px;
+    }
+
+    .lightbox-next {
+        right: 20px;
+    }
+
+    .lightbox-counter {
+        bottom: 32px;
+    }
+
+    .lightbox-close {
+        top: 15px;
+        right: 18px;
+        font-size: 32px;
+    }
+}
+
+/* ---------- HERO MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+    .hero {
+        height: 72vh;
+        width: 100%;
+    }
+
+    .hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        /* Adjust this if the subject isn't centered */
+        object-position: center;
+    }
+
+    .hero-text {
+        width: 90%;
+        top: 50%;
+    }
+
+    .hero-text h1 {
+        font-size: 25px;
+        letter-spacing: 5px;
+        line-height: 1.25;
+        white-space: nowrap;
+    }
+
+    .hero-text p {
+        margin-top: 12px;
+        font-size: 11px;
+        letter-spacing: 4px;
+    }
+
+    .hero::after {
+        background:
+            linear-gradient(
+                to bottom,
+                #111 0%,
+                transparent 15%,
+                transparent 72%,
+                #111 100%
+            );
+    }
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: 58px;
+        padding: 0 18px;
+    }
+
+    .logo {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+    }
+
+    .nav-links {
+        gap: 18px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
 }
