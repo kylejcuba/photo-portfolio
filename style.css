@@ -573,41 +573,120 @@ body.lightbox-open {
     }
 }
 
-/* ---------- LIGHTBOX MOBILE ---------- */
+/* ---------- MOBILE LIGHTBOX ---------- */
 
 @media (max-width: 600px) {
 
-    .lightbox img {
-        max-width: 94%;
-        max-height: 72vh;
+    .lightbox {
+        position: fixed;
+        inset: 0;
+
+        width: 100vw;
+        height: 100dvh;
+
+        display: none;
+
+        background: #000;
+
+        overflow: hidden;
     }
 
+    .lightbox.open {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    /* IMAGE AREA */
+
+    .lightbox-image-container {
+        position: absolute;
+
+        top: 60px;
+        left: 0;
+
+        width: 100%;
+        height: calc(100dvh - 160px);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        overflow: hidden;
+    }
+
+    .lightbox img {
+        display: block;
+
+        width: auto;
+        height: auto;
+
+        max-width: 92vw;
+        max-height: calc(100dvh - 180px);
+
+        object-fit: contain;
+
+        margin: 0;
+    }
+
+
+    /* CLOSE BUTTON */
+
+    .lightbox-close {
+        position: absolute;
+
+        top: 18px;
+        right: 20px;
+
+        font-size: 30px;
+
+        padding: 5px;
+
+        z-index: 10;
+    }
+
+
+    /* ARROWS */
+
     .lightbox-arrow {
+        position: absolute;
+
         top: auto;
-        bottom: 70px;
+        bottom: 30px;
 
         transform: none;
 
-        font-size: 28px;
-        padding: 15px 20px;
+        font-size: 26px;
+
+        padding: 10px;
+
+        z-index: 10;
     }
 
     .lightbox-prev {
-        left: 25px;
+        left: calc(50% - 100px);
     }
 
     .lightbox-next {
-        right: 25px;
+        right: calc(50% - 100px);
     }
+
+
+    /* COUNTER */
 
     .lightbox-counter {
-        bottom: 82px;
-    }
+        position: absolute;
 
-    .lightbox-close {
-        top: 15px;
-        right: 18px;
-        font-size: 32px;
+        left: 50%;
+        bottom: 41px;
+
+        transform: translateX(-50%);
+
+        font-size: 10px;
+        letter-spacing: 2px;
+
+        z-index: 10;
     }
 }
 
@@ -643,7 +722,7 @@ body.lightbox-open {
 
     .hero-text p {
         margin-top: 12px;
-        font-size: 11px;
+        font-size: 12px;
         letter-spacing: 4px;
     }
 
